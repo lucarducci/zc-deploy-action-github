@@ -14,8 +14,12 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 The time we greeted you.
 
+## Deploy
+git tag -a -m "release" v2
+git push --follow-tags
+
 ## Example usage
 
-uses: actions/hello-world-javascript-action@v1.1
+uses: lucarducci/zc-deploy-action-github@v1
 with:
-  who-to-greet: 'Mona the Octocat'
+  who-to-greet: 'Luca'
