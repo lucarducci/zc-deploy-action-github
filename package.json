@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon test.js"
+    "build": "ncc build index.js --license licenses.txt",
+    "publish": "npm version patch && git push --follow-tags",
+    "start": "nodemon test.js"
   },
   "repository": {
     "type": "git",
