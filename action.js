@@ -59,7 +59,10 @@ const execute = async function (opt) {
         // Delete old environment
       } else {
         console.log(
-          "No env found with tags: " + tagKeyColor + " = 'green'" + (envTarget ? " and " + tagKeyEnv + " = " + envTarget : "")
+          "No env found with tags: " +
+            opt.tagKeyColor +
+            " = 'green'" +
+            (opt.envTarget ? " and " + opt.tagKeyEnv + " = " + opt.envTarget : "")
         );
       }
     }
