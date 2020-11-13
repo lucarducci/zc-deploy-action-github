@@ -44,29 +44,29 @@ const execute = async function (opt) {
           envType = true;
         }
       }
+    }
 
-      // Execute
-      if (green && envType) {
-        console.log("Execute ", env);
-        core.setOutput("source-env-name", env.EnvironmentName);
-        const destEnvName = env.EnvironmentName + "-" + opt.envTarget + "-" + new Date().getTime();
-        console.log("Dest env: " + destEnvName);
-        core.setOutput("dest-env-name", destEnvName);
-        // Clone env
+    // Execute
+    if (green && envType) {
+      console.log("Execute ", env);
+      core.setOutput("source-env-name", env.EnvironmentName);
+      const destEnvName = env.EnvironmentName + "-" + opt.envTarget + "-" + new Date().getTime();
+      console.log("Dest env: " + destEnvName);
+      core.setOutput("dest-env-name", destEnvName);
+      // Clone env
 
-        // Update new environment
-        // Test healthCheck
-        // Swap URLs
-        // Update tags
-        // Delete old environment
-      } else {
-        console.log(
-          "No env found with tags: " +
-            opt.tagKeyColor +
-            " = 'green'" +
-            (opt.envTarget ? " and " + opt.tagKeyEnv + " = " + opt.envTarget : "")
-        );
-      }
+      // Update new environment
+      // Test healthCheck
+      // Swap URLs
+      // Update tags
+      // Delete old environment
+    } else {
+      console.log(
+        "No env found with tags: " +
+          opt.tagKeyColor +
+          " = 'green'" +
+          (opt.envTarget ? " and " + opt.tagKeyEnv + " = " + opt.envTarget : "")
+      );
     }
   }
 };
