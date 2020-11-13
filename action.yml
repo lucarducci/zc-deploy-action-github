@@ -1,5 +1,4 @@
-name: "Hello World"
-description: "Greet someone and record the time"
+name: "AWS Elastic Beanstalk blue green deploy"
 inputs:
   action:
     required: true
