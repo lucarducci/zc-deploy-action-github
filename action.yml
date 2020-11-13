@@ -1,10 +1,14 @@
 name: "Hello World"
 description: "Greet someone and record the time"
 inputs:
+  action:
+    required: true
+  env-name:
+    required: false
   app-name:
-    required: true
+    required: false
   tag-key-color:
-    required: true
+    required: false
   tag-key-env:
     required: false
   env-target:

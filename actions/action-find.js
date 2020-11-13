@@ -5,8 +5,6 @@ const github = require("@actions/github");
 const fs = require("fs");
 
 const execute = async function (opt) {
-  console.log(opt);
-
   // Set credentials
   if (!fs.existsSync("./AWSManagerConfig.json")) {
     let config = {
@@ -20,7 +18,7 @@ const execute = async function (opt) {
   // Init
   var AWS = require("aws-sdk");
   AWS.config.loadFromPath("./AWSManagerConfig.json");
-  const eb = new AWS.ElasticBeanstalk({ region: "us-east-1" });
+  const eb = new AWS.ElasticBeanstalk({ region: opt.region });
 
   // Get envs
   const envResponse = await eb.describeEnvironments().promise();

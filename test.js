@@ -1,10 +1,20 @@
-const action = require("./action.js");
+const action = require("./actions/dispatch.js");
 
+// Test findEnv
 let opt = {
+  action: "findEnv",
   appName: "zc-deploy-test",
   tagKeyColor: "color",
   tagKeyEnv: "env",
   envTarget: "stage",
   region: "us-east-1",
 };
-action.execute(opt);
+
+// Test wait
+let opt2 = {
+  action: "wait",
+  envName: "zc-deploy-test-env",
+  region: "us-east-1",
+};
+
+action.execute(opt2);
