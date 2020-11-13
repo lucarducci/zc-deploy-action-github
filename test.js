@@ -1,4 +1,4 @@
-const index = require("./index.js");
+const action = require("./action.js");
 
 let opt = {
   appName: "zc-deploy-test",
@@ -7,4 +7,4 @@ let opt = {
   envTarget: "stage",
   region: "us-east-1",
 };
-index.execute(opt);
+action.execute(opt);
