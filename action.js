@@ -47,7 +47,11 @@ const execute = async function (opt) {
       if (green && envType) {
         console.log("Execute ", env);
         core.setOutput("source-env-name", env.EnvironmentName);
-        const destEnvName = env.EnvironmentName + "_" + opt.envTarget + "_" + new Date().getTime();
+        let token = randomstring.generate({
+          length: 12,
+          charset: "alphabetic",
+        });
+        const destEnvName = env.EnvironmentName + "_" + opt.envTarget + "_" + token;
         console.log("Dest env: " + destEnvName);
         core.setOutput("dest-env-name", destEnvName);
         // Clone env
