@@ -5,6 +5,8 @@ const github = require("@actions/github");
 const fs = require("fs");
 
 const execute = async function (opt) {
+  console.log(opt);
+  
   // Set credentials
   if (!fs.existsSync("./AWSManagerConfig.json")) {
     let config = {
