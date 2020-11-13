@@ -7,7 +7,7 @@ try {
   let opt = {
     appName: core.getInput("app-name"),
     tagKeyColor: core.getInput("tag-key-color"),
-    tagKeyEvn: core.getInput("tag-key-evn"),
+    tagKeyEnv: core.getInput("tag-key-env"),
     envTarget: core.getInput("env-target"),
     accessKeyId: core.getInput("aws-access-key-id"),
     secretAccessKey: core.getInput("aws-secret-access-key"),

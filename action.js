@@ -37,7 +37,7 @@ const execute = async function (opt) {
           console.log("Is green");
           green = true;
         }
-        if (tag.Key == opt.tagKeyEvn && tag.Value == opt.envTarget) {
+        if (tag.Key == opt.tagKeyEnv && tag.Value == opt.envTarget) {
           console.log("Is env " + opt.envTarget);
           envType = true;
         }
@@ -59,7 +59,7 @@ const execute = async function (opt) {
         // Delete old environment
       } else {
         console.log(
-          "No env found with tags: " + tagKeyColor + " = 'green'" + (envTarget ? " and " + tagKeyEvn + " = " + envTarget : "")
+          "No env found with tags: " + tagKeyColor + " = 'green'" + (envTarget ? " and " + tagKeyEnv + " = " + envTarget : "")
         );
       }
     }

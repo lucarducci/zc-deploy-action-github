@@ -5,7 +5,7 @@ inputs:
     required: true
   tag-key-color:
     required: true
-  tag-key-evn:
+  tag-key-env:
     required: false
   env-target:
     required: false
