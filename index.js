@@ -1,21 +1,37 @@
 // Libs
 const core = require("@actions/core");
 const github = require("@actions/github");
-
-// Init
-var AWS = require("aws-sdk");
-AWS.config.loadFromPath("./AWSManagerConfig.json");
+const fs = require("fs");
 
 const execute = async function (opt) {
-  const eb = new AWS.ElasticBeanstalk({ region: "us-east-1" });
+  console.log(opt);
+  // Set credentials
+  if (!fs.existsSync("./AWSManagerConfig.json")) {
+    let config = {
+      accessKeyId: opt.accessKeyId,
+      secretAccessKey: opt.secretAccessKey,
+      region: opt.region,
+    };
+    fs.writeFileSync("./AWSManagerConfig.json", JSON.stringify(config));
+  }
 
+  // Init
+  var AWS = require("aws-sdk");
+  AWS.config.loadFromPath("./AWSManagerConfig.json");
+  const eb = new AWS.ElasticBeanstalk({ region: opt.region });
+
+  // Get envs
   const envResponse = await eb.describeEnvironments().promise();
 
   for (let env of envResponse.Environments) {
     if (env.ApplicationName == opt.appName) {
       console.log("Checking environment ", env.EnvironmentName);
+      // Get tags
+      let tags = await eb
+        .listTagsForResource({ ResourceArn: env.EnvironmentArn })
+        .promise();
+
       // Check tags
-      let tags = await eb.listTagsForResource({ ResourceArn: env.EnvironmentArn }).promise();
       let green = false;
       let envType = opt.envTarget ? false : true;
       for (let tag of tags.ResourceTags) {
@@ -32,10 +48,15 @@ const execute = async function (opt) {
       // Execute
       if (green && envType) {
         console.log("Execute ", env);
-        core.setOutput("sourceEnvName", env.EnvironmentName);
-        const destEnvName = env.EnvironmentName + "_" + opt.envTarget + "_" + new Date().getTime();
+        core.setOutput("source-env-name", env.EnvironmentName);
+        const destEnvName =
+          env.EnvironmentName +
+          "_" +
+          opt.envTarget +
+          "_" +
+          new Date().getTime();
         console.log("Dest env: " + destEnvName);
-        core.setOutput("destEnvName", destEnvName);
+        core.setOutput("dest-env-name", destEnvName);
         // Clone env
 
         // Update new environment
@@ -45,7 +66,10 @@ const execute = async function (opt) {
         // Delete old environment
       } else {
         console.log(
-          "No env found with tags: " + tagKeyColor + " = 'green'" + (envTarget ? " and " + tagKeyEvn + " = " + envTarget : "")
+          "No env found with tags: " +
+            tagKeyColor +
+            " = 'green'" +
+            (envTarget ? " and " + tagKeyEvn + " = " + envTarget : "")
         );
       }
     }
@@ -53,13 +77,16 @@ const execute = async function (opt) {
 };
 
 try {
-    let opt = {
-      appName: core.getInput("appName"),
-      tagKeyColor: core.getInput("tagKeyColor"),
-      tagKeyEvn: core.getInput("tagKeyEvn"),
-      envTarget: core.getInput("envTarget"),
-    };
-    execute(opt);
+  let opt = {
+    appName: core.getInput("app-name"),
+    tagKeyColor: core.getInput("tag-key-color"),
+    tagKeyEvn: core.getInput("tag-key-evn"),
+    envTarget: core.getInput("env-target"),
+    accessKeyId: core.getInput("aws-access-key-id"),
+    secretAccessKey: core.getInput("aws-secret-access-key"),
+    region: core.getInput("region"),
+  };
+  execute(opt);
 } catch (error) {
   core.setFailed(error.message);
 }

@@ -5,5 +5,6 @@ let opt = {
   tagKeyColor: "color",
   tagKeyEvn: "env",
   envTarget: "stage",
+  region: "us-east-1",
 };
 index.execute(opt);

@@ -1,13 +1,25 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: "Hello World"
+description: "Greet someone and record the time"
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  app-name:
     required: true
-    default: 'World'
+  tag-key-color:
+    required: true
+  tag-key-evn:
+    required: false
+  env-target:
+    required: false
+  aws-access-key-id:
+    required: true
+  aws-secret-access-key:
+    required: true
+  region:
+    required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  source-env-name:
+    description: "Name of the source environment"
+  dest-env-name:
+    description: "Name of the destination environment"
 runs:
-  using: 'node12'
-  main: 'index.js'
+  using: "node12"
+  main: "index.js"
