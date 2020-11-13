@@ -19,6 +19,7 @@
   "homepage": "https://github.com/lucarducci/zc-deploy-action-github#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0"
+    "@actions/github": "^4.0.0",
+    "aws-sdk": "^2.791.0"
   }
 }
