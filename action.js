@@ -3,7 +3,6 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 const fs = require("fs");
-const randomstring = require("randomstring");
 
 const execute = async function (opt) {
   // Set credentials
@@ -52,7 +51,7 @@ const execute = async function (opt) {
           length: 12,
           charset: "alphabetic",
         });
-        const destEnvName = env.EnvironmentName + "_" + opt.envTarget + "_" + token;
+        const destEnvName = env.EnvironmentName + "-" + opt.envTarget + "-" + new Date().getTime();
         console.log("Dest env: " + destEnvName);
         core.setOutput("dest-env-name", destEnvName);
         // Clone env
