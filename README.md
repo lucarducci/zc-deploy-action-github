@@ -15,7 +15,7 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 The time we greeted you.
 
 ## Deploy
-git tag -a -m "release" v2
+npm version minor
 git push --follow-tags
 
 ## Example usage
