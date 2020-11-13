@@ -3,6 +3,7 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 const fs = require("fs");
+const randomstring = require("randomstring");
 
 const execute = async function (opt) {
   // Set credentials
