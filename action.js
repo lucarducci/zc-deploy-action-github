@@ -47,10 +47,6 @@ const execute = async function (opt) {
       if (green && envType) {
         console.log("Execute ", env);
         core.setOutput("source-env-name", env.EnvironmentName);
-        let token = randomstring.generate({
-          length: 12,
-          charset: "alphabetic",
-        });
         const destEnvName = env.EnvironmentName + "-" + opt.envTarget + "-" + new Date().getTime();
         console.log("Dest env: " + destEnvName);
         core.setOutput("dest-env-name", destEnvName);
