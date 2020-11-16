@@ -26,6 +26,7 @@ const execute = async function (opt) {
 
 const check = async function (eb, envName) {
   let env = await eb.describeEnvironments({ EnvironmentNames: [envName] }).promise();
+  core.setOutput("tested-env", env);
   if (env.Environments[0].Health != "Green") {
     console.log("Environment health is " + env.Environments[0].Health);
     await sleep(30000);

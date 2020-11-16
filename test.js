@@ -13,7 +13,7 @@ let opt = {
 // Test wait
 let opt2 = {
   action: "wait",
-  envName: "zc-deploy-test-env-stage-1605298760861",
+  envName: "zc-deploy-test-env",
   region: "us-east-1",
 };
 
