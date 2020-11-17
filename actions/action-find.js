@@ -56,7 +56,7 @@ const execute = async function (opt) {
   if (envFound) {
     console.log("Execute ", envFound);
     core.setOutput("source-env-name", envFound.EnvironmentName);
-    const destEnvName = envFound.EnvironmentName + "-" + opt.envTarget + "-" + new Date().getTime();
+    const destEnvName = envFound.ApplicationName + "-" + opt.envTarget + "-" + new Date().getTime();
     console.log("Dest env: " + destEnvName);
     core.setOutput("dest-env-name", destEnvName);
     // Clone env
