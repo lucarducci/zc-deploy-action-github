@@ -13,7 +13,7 @@ let opt = {
 // Test wait
 let opt2 = {
   action: "wait",
-  envName: "zc-deploy-test-env",
+  envName: "piggyback-backend-master-1605691568314",
   region: "us-east-1",
 };
 
