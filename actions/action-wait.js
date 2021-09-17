@@ -27,7 +27,7 @@ const execute = async function (opt) {
 const check = async function (eb, envName) {
   let env = await eb.describeEnvironments({ EnvironmentNames: [envName] }).promise();
   core.setOutput("tested-env", env.Environments[0]);
-  core.setOutput("tested-env-url", "http://" + env.Environments[0].CNAME);
+  core.setOutput("tested-env-url", "https://" + env.Environments[0].CNAME);
   if (env.Environments[0].Status != "Ready") {
     console.log("Environment Status is " + env.Environments[0].Status);
     await sleep(30000);
